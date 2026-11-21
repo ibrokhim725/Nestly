@@ -1,5 +1,6 @@
 # UyTop dependencies
 aiogram>=3.13,<4
+aiohttp>=3.9,<4
 SQLAlchemy>=2.0.30,<3
 asyncpg>=0.29,<1
 alembic>=1.13,<2

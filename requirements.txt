@@ -1,0 +1,15 @@
+# UyTop dependencies
+aiogram>=3.13,<4
+SQLAlchemy>=2.0.30,<3
+asyncpg>=0.29,<1
+alembic>=1.13,<2
+redis>=5.0,<6
+APScheduler==3.10.4
+python-dotenv>=1.0,<2
+pydantic>=2.7,<3
+pydantic-settings>=2.3,<3
+greenlet>=3.0,<4
+
+# Testing
+pytest>=8.2,<9
+pytest-asyncio>=0.23,<1

@@ -42,6 +42,18 @@ class Settings(BaseSettings):
     )
     rate_limit_seconds: float = Field(default=1.0, alias="RATE_LIMIT_SECONDS")
 
+    @field_validator("database_url")
+    @classmethod
+    def _normalize_database_url(cls, value: str) -> str:
+        value = value.strip()
+        for prefix in ("postgres://", "postgresql://"):
+            if value.startswith(prefix):
+                value = "postgresql+asyncpg://" + value[len(prefix) :]
+                break
+        if "sslmode=require" in value:
+            value = value.replace("sslmode=require", "ssl=require")
+        return value
+
     @field_validator("mode")
     @classmethod
     def _validate_mode(cls, value: str) -> str:

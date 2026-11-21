@@ -199,3 +199,13 @@ async def test_finish_location_shows_results_without_filter_menu() -> None:
     texts = [call.args[0] for call in callback.message.answer.await_args_list]
     assert callback.message.answer.await_count >= 1
     assert i18n.t("search.filters_title") not in texts
+
+
+def test_database_url_normalized_to_asyncpg() -> None:
+    from config import Settings
+
+    settings = Settings(
+        BOT_TOKEN="fake",
+        DATABASE_URL="postgres://u:p@example.com/db?sslmode=require",
+    )
+    assert settings.database_url == "postgresql+asyncpg://u:p@example.com/db?ssl=require"
